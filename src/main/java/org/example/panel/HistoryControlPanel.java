@@ -5,7 +5,7 @@ import org.example.controller.HistoryButton;
 import org.example.staticValue.CalculatorSize;
 
 public class HistoryControlPanel extends AnchorPane {
-    private final static double historyControlPanelHeight = 50;
+    private final static double historyControlPanelHeight = 100;
     private HistoryButton historyButton;
 
     public HistoryControlPanel() {

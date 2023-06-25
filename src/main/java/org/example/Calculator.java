@@ -32,7 +32,6 @@ public class Calculator extends AnchorPane {
         historyControlPanel.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                System.out.println("历史记录");
                 historyPanel.toggleHistoryPanel();
             }
         });
