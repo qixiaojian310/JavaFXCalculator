@@ -1,6 +1,9 @@
 package org.example.panel;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -10,6 +13,7 @@ public class ButtonPanel extends GridPane {
     private final static double buttonPanelHeight = 500;
     private final static int rowNumber = 5;
     private final static int columnNumber = 4;
+
     public ButtonPanel(){
         this.setPrefSize(CalculatorSize.width,buttonPanelHeight);
         this.setLayoutY(CalculatorSize.height-buttonPanelHeight);
@@ -22,7 +26,13 @@ public class ButtonPanel extends GridPane {
         }
         for (int row = 0; row < rowNumber; row++) {
             for (int column = 0; column < columnNumber; column++) {
-                Button button = new Button("123");
+                Button button = new Button(String.valueOf(row)+String.valueOf(column));
+                button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        System.out.println(1111);
+                    }
+                });
                 button.setPrefSize(CalculatorSize.width/columnNumber,buttonPanelHeight/rowNumber);
                 this.add(button,column,row);
             }
