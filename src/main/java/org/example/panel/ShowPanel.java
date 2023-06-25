@@ -15,7 +15,7 @@ public class ShowPanel extends GridPane {
     public static final double showPanelHeight = 140;
     public ShowPanel(){
         this.setPrefSize(CalculatorSize.width,showPanelHeight);
-        this.setLayoutY(0);
+        this.setLayoutY(50);
         this.setStyle("-fx-background-color: #ffffff;");
         //增加行数和列数（2，2）
         RowConstraints row1 = new RowConstraints(showPanelHeight/2);
