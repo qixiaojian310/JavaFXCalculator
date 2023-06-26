@@ -1,13 +1,19 @@
 package org.example.panel;
 
+import com.alibaba.fastjson2.JSON;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import org.example.pojo.History;
 import org.example.staticValue.CalculatorSize;
 import org.example.util.ExpressionEvaluator;
+import org.example.util.HistoryRecorder;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class ShowPanel extends GridPane {
     private TextField inputTextField;
@@ -37,8 +43,11 @@ public class ShowPanel extends GridPane {
         this.add(this.result,1,1);
     }
     public void calculate(){
+        String resultString = String.valueOf(ExpressionEvaluator.evaluateExpression(this.inputTextField.getText()));
+        String expression = this.inputTextField.getText();
         //计算结果
-        result.setText(String.valueOf(ExpressionEvaluator.evaluateExpression(this.inputTextField.getText())));
+        result.setText(resultString);
+        HistoryRecorder.writeDownHistory(new History(expression,resultString));
     }
     public void clear(){
         //清空输入框

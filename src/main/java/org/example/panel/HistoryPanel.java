@@ -16,6 +16,7 @@ import javafx.scene.layout.TilePane;
 import org.example.controller.HistoryShow;
 import org.example.pojo.History;
 import org.example.staticValue.CalculatorSize;
+import org.example.util.HistoryRecorder;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -33,8 +34,10 @@ public class HistoryPanel extends AnchorPane {
     private ArrayList<History> histories = new ArrayList<History>();
 
     public HistoryPanel(){
-        this.readHistory();
-        this.addHistory(new HistoryShow(new History("1+1","2")));
+        this.histories = HistoryRecorder.readHistory();
+        for (History history : this.histories) {
+            addHistory(new HistoryShow(history));
+        }
         this.setStyle("-fx-background-color: #ffffff;");
         this.setPrefSize(CalculatorSize.width, historyPanelHeight);
         this.setLayoutY(CalculatorSize.height-historyPanelHeight);
@@ -71,49 +74,11 @@ public class HistoryPanel extends AnchorPane {
     }
     private void addHistory(HistoryShow historyShow){
         this.historyShows.add(historyShow);
-        this.histories.add(historyShow.getHistory());
         historyShow.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                System.out.println();
+
             }
         });
-    }
-    private void writeDownHistory(){
-        String historiesString = JSON.toJSONString(this.histories);
-
-        // write json String to file
-        try {
-            File file = new File("histories.json");
-            if (file.exists()){
-                file.delete();
-            }
-            file.createNewFile();
-            Writer writer =  new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
-            writer.write(historiesString);
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void readHistory(){
-        File file = new File("histories.json");
-        if (!file.exists()){
-            return;
-        }
-        try {
-            Reader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
-            char[] chars = new char[(int) file.length()];
-            reader.read(chars);
-            String historiesString = new String(chars);
-            ArrayList<History> histories = (ArrayList<History>) JSON.parseArray(historiesString,History.class);
-            for (History history:histories){
-                this.addHistory(new HistoryShow(history));
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

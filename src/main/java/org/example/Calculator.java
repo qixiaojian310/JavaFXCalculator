@@ -1,5 +1,6 @@
 package org.example;
 
+import com.alibaba.fastjson2.JSON;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -9,6 +10,9 @@ import org.example.panel.ButtonPanel;
 import org.example.panel.HistoryControlPanel;
 import org.example.panel.HistoryPanel;
 import org.example.panel.ShowPanel;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class Calculator extends AnchorPane {
     private ShowPanel showPanel;
