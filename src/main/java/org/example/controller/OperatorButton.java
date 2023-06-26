@@ -14,12 +14,7 @@ public class OperatorButton extends Button {
         this.rowNum = rowNum;
         this.operator = operator;
         this.setText(operator);
-        this.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println(operator);
-            }
-        });
+        this.setStyle("-fx-font-size: 24px;");
     }
 
     public String inputOperator() {

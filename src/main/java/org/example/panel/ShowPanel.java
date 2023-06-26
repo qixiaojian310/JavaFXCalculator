@@ -40,4 +40,20 @@ public class ShowPanel extends GridPane {
         //计算结果
         result.setText(String.valueOf(ExpressionEvaluator.evaluateExpression(this.inputTextField.getText())));
     }
+    public void clear(){
+        //清空输入框
+        this.inputTextField.setText("");
+        this.result.setText("");
+    }
+    public void input(String input){
+        //输入
+        this.inputTextField.setText(this.inputTextField.getText()+input);
+    }
+    public void delete(){
+        //删除
+        String input = this.inputTextField.getText();
+        if(input.length()>0){
+            this.inputTextField.setText(input.substring(0,input.length()-1));
+        }
+    }
 }

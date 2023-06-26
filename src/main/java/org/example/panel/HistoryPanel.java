@@ -1,5 +1,7 @@
 package org.example.panel;
 
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.beans.value.ObservableValueBase;
@@ -11,9 +13,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
-import org.example.controller.History;
+import org.example.controller.HistoryShow;
+import org.example.pojo.History;
 import org.example.staticValue.CalculatorSize;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class HistoryPanel extends AnchorPane {
@@ -24,10 +29,12 @@ public class HistoryPanel extends AnchorPane {
     private AnchorPane labelPanel = new AnchorPane();
     private TilePane historyPanel = new TilePane();
     private Label label = new Label("History");
+    private ArrayList<HistoryShow> historyShows = new ArrayList<HistoryShow>();
     private ArrayList<History> histories = new ArrayList<History>();
 
     public HistoryPanel(){
-        this.addHistory(new History("1+1","2"));
+        this.readHistory();
+        this.addHistory(new HistoryShow(new History("1+1","2")));
         this.setStyle("-fx-background-color: #ffffff;");
         this.setPrefSize(CalculatorSize.width, historyPanelHeight);
         this.setLayoutY(CalculatorSize.height-historyPanelHeight);
@@ -42,7 +49,7 @@ public class HistoryPanel extends AnchorPane {
         this.scrollPanel.fitToWidthProperty().set(true);
         this.scrollPanel.setContent(historyPanel);
         this.historyPanel.setPrefSize(CalculatorSize.width,historyPanelHeight-labelPanelHeight);
-        this.historyPanel.getChildren().addAll(histories);
+        this.historyPanel.getChildren().addAll(historyShows);
         this.labelPanel.getChildren().add(label);
         this.getChildren().addAll(labelPanel,scrollPanel);
         hideHistoryPanel();
@@ -62,13 +69,51 @@ public class HistoryPanel extends AnchorPane {
             showHistoryPanel();
         }
     }
-    private void addHistory(History history){
-        this.histories.add(history);
-        history.setOnMouseClicked(new EventHandler<MouseEvent>() {
+    private void addHistory(HistoryShow historyShow){
+        this.historyShows.add(historyShow);
+        this.histories.add(historyShow.getHistory());
+        historyShow.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                System.out.println(history.getFormulaAndResult()[0]+history.getFormulaAndResult()[1]);
+                System.out.println();
             }
         });
+    }
+    private void writeDownHistory(){
+        String historiesString = JSON.toJSONString(this.histories);
+
+        // write json String to file
+        try {
+            File file = new File("histories.json");
+            if (file.exists()){
+                file.delete();
+            }
+            file.createNewFile();
+            Writer writer =  new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
+            writer.write(historiesString);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void readHistory(){
+        File file = new File("histories.json");
+        if (!file.exists()){
+            return;
+        }
+        try {
+            Reader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
+            char[] chars = new char[(int) file.length()];
+            reader.read(chars);
+            String historiesString = new String(chars);
+            ArrayList<History> histories = (ArrayList<History>) JSON.parseArray(historiesString,History.class);
+            for (History history:histories){
+                this.addHistory(new HistoryShow(history));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.example.controller.OperatorButton;
 import org.example.panel.ButtonPanel;
 import org.example.panel.HistoryControlPanel;
 import org.example.panel.HistoryPanel;
@@ -23,10 +24,22 @@ public class Calculator extends AnchorPane {
         buttonPanel.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Button button = (Button) mouseEvent.getTarget();
-                String buttonValue = button.getText();
-                System.out.println(buttonValue);
-                showPanel.calculate();
+                OperatorButton operatorButton = (OperatorButton) mouseEvent.getTarget();
+                System.out.println(operatorButton.inputOperator());
+                switch (operatorButton.inputOperator()) {
+                    case "AC":
+                        showPanel.clear();
+                        break;
+                    case "DEL":
+                        showPanel.delete();
+                        break;
+                    case "=":
+                        showPanel.calculate();
+                        break;
+                    default:
+                        showPanel.input(operatorButton.inputOperator());
+                        break;
+                }
             }
         });
         historyControlPanel.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
