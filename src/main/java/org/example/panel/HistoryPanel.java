@@ -1,26 +1,17 @@
 package org.example.panel;
 
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONObject;
-import javafx.application.Platform;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.beans.value.ObservableValueBase;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
+import javafx.event.Event;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import org.example.controller.HistoryShow;
+import org.example.event.HistoryClickEvent;
+import org.example.event.HistoryLoadEvent;
 import org.example.pojo.History;
 import org.example.staticValue.CalculatorSize;
 import org.example.util.HistoryRecorder;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class HistoryPanel extends AnchorPane {
@@ -110,11 +101,9 @@ public class HistoryPanel extends AnchorPane {
     }
     private void addHistory(HistoryShow historyShow){
         this.historyShows.add(historyShow);
-        historyShow.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-
-            }
+        historyShow.addEventHandler(HistoryClickEvent.HISTORY_CLICK_EVENT_TYPE, (HistoryClickEvent historyClickEvent) -> {
+            HistoryShow historyShowActive = (HistoryShow) historyClickEvent.getTarget();
+            Event.fireEvent(this,new HistoryLoadEvent(historyShowActive.getHistory()));
         });
     }
 }

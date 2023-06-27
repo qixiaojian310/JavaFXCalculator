@@ -18,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 public class ShowPanel extends GridPane {
     private TextField inputTextField;
     private Label result;
+    private String historyID = "";
     public static final double showPanelHeight = 140;
     public ShowPanel(){
         this.setPrefSize(CalculatorSize.width,showPanelHeight);
@@ -43,11 +44,12 @@ public class ShowPanel extends GridPane {
         this.add(this.result,1,1);
     }
     public void calculate(){
+//        String resultString = String.valueOf(ExpressionEvaluator.evaluateExpression("8-3-3"));
         String resultString = String.valueOf(ExpressionEvaluator.evaluateExpression(this.inputTextField.getText()));
         String expression = this.inputTextField.getText();
         //计算结果
         result.setText(resultString);
-        HistoryRecorder.writeDownHistory(new History(expression,resultString));
+        HistoryRecorder.writeDownHistory(expression,resultString,historyID);
     }
     public void clear(){
         //清空输入框
@@ -64,5 +66,11 @@ public class ShowPanel extends GridPane {
         if(input.length()>0){
             this.inputTextField.setText(input.substring(0,input.length()-1));
         }
+    }
+    public void loadHistory(History history){
+        //加载历史记录
+        this.inputTextField.setText(history.getExpression());
+        this.result.setText(history.getResult());
+        this.historyID = history.getHistoryId();
     }
 }

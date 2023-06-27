@@ -7,9 +7,10 @@ import org.example.pojo.History;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class HistoryRecorder {
-    public static void writeDownHistory(History history){
+    public static void writeDownHistory(String expression,String result,String historyID){
         // write json String to file
         try {
             File file = new File("histories.json");
@@ -17,8 +18,22 @@ public class HistoryRecorder {
                 file.createNewFile();
             }
             //read file
+            boolean haveHistory = false;
             ArrayList<History> histories = readHistory();
-            histories.add(history);
+            if(historyID.isEmpty()){
+                histories.add(new History(expression,result));
+            }else{
+                for(History history:histories){
+                    if(Objects.equals(history.getHistoryId(),historyID)){
+                        history.setExpression(expression);
+                        history.setResult(result);
+                        break;
+                    }
+                }
+                for (History history : histories) {
+                    System.out.println(history.getExpression());
+                }
+            }
             Writer writer =  new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
             String historiesString = JSON.toJSONString(histories);
             writer.write(historiesString);

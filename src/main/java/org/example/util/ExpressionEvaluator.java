@@ -6,7 +6,6 @@ public class ExpressionEvaluator {
     public static double evaluateExpression(String expression) {
         // 去除空格
         expression = expression.replaceAll("\\s+", "");
-
         Stack<Double> numberStack = new Stack<>();      // 存储数字的栈
         Stack<Character> operatorStack = new Stack<>(); // 存储操作符的栈
 
@@ -63,7 +62,13 @@ public class ExpressionEvaluator {
         if (op2 == '(' || op2 == ')') {
             return false;
         }
-        return (op1 == '*' || op1 == '/') && (op2 == '+' || op2 == '-');
+        if ((op1 == '+' || op1 == '-') && (op2 == '+' || op2 == '-')) {
+            return true;
+        }
+        if ((op1 == '*' || op1 == '/') && (op2 == '*' || op2 == '/')) {
+            return true;
+        }
+        return (op1 == '+' || op1 == '-') && (op2 == '*' || op2 == '/');
     }
 
     private static double performOperation(char operator, double b, double a) {

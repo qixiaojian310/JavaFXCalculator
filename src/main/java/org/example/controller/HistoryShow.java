@@ -1,10 +1,10 @@
 package org.example.controller;
 
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
+import javafx.event.Event;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import org.example.event.HistoryClickEvent;
 import org.example.pojo.History;
 import org.example.staticValue.CalculatorSize;
 
@@ -30,7 +30,10 @@ public class HistoryShow extends GridPane {
         this.add(formulaLabel,1,0);
         this.add(resultLabel,1,1);
         this.setPrefSize(CalculatorSize.width,historyControlPanelHeight);
-    }
+        this.setOnMouseClicked((MouseEvent event)->{
+            Event.fireEvent(this,new HistoryClickEvent());
+        });
+    };
     public History getHistory(){
         return this.history;
     }
