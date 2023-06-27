@@ -29,7 +29,6 @@ public class Calculator extends AnchorPane {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 OperatorButton operatorButton = (OperatorButton) mouseEvent.getTarget();
-                System.out.println(operatorButton.inputOperator());
                 switch (operatorButton.inputOperator()) {
                     case "AC":
                         showPanel.clear();

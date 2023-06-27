@@ -41,7 +41,11 @@ public class HistoryRecorder {
             String historiesString = new String(chars);
             ArrayList<History> histories = (ArrayList<History>) JSON.parseArray(historiesString,History.class);
             reader.close();
-            return histories;
+            if(histories == null) {
+                return new ArrayList<History>();
+            } else {
+                return histories;
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
