@@ -8,9 +8,13 @@ public class History {
     private String historyId;
 
     public History(String expression, String result) {
-        this.historyId = UUID.randomUUID().toString();
         this.expression = expression;
         this.result = result;
+    }
+    public History(String expression, String result, String historyId) {
+        this.expression = expression;
+        this.result = result;
+        this.historyId = historyId;
     }
 
     public String getExpression() {
@@ -19,6 +23,9 @@ public class History {
 
     public String getResult() {
         return result;
+    }
+    public void generateHistoryId(){
+        this.historyId = UUID.randomUUID().toString();
     }
     public String getHistoryId(){
         return historyId;

@@ -21,17 +21,17 @@ public class HistoryRecorder {
             boolean haveHistory = false;
             ArrayList<History> histories = readHistory();
             if(historyID.isEmpty()){
-                histories.add(new History(expression,result));
+                History addHistory = new History(expression,result);
+                addHistory.generateHistoryId();
+                histories.add(addHistory);
             }else{
+                System.out.println(expression);
                 for(History history:histories){
                     if(Objects.equals(history.getHistoryId(),historyID)){
                         history.setExpression(expression);
                         history.setResult(result);
                         break;
                     }
-                }
-                for (History history : histories) {
-                    System.out.println(history.getExpression());
                 }
             }
             Writer writer =  new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);

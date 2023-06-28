@@ -1,1 +1,1 @@
-[{"expression":"8*8-3","historyId":"5c582ec6-0065-42c2-b7b9-a10022e135a8","result":"61.0"},{"expression":"9*9-3","historyId":"f75bcb6b-f15f-47bd-8ff8-8fae69675454","result":"78.0"}]
+[{"expression":"8*8-3*8+3","historyId":"11c134b8-d379-4cfb-9d9e-91bc6d54ff11","result":"43.0"},{"expression":"9*9","historyId":"aac6ad59-6b60-4f29-9dd7-096bf8996bb9","result":"81.0"}]
