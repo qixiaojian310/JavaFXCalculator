@@ -1,12 +1,15 @@
 package org.example.panel;
 
 import com.alibaba.fastjson2.JSON;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import org.example.controller.ErrorAlert;
 import org.example.pojo.History;
 import org.example.staticValue.CalculatorSize;
 import org.example.util.ExpressionEvaluator;
@@ -14,6 +17,7 @@ import org.example.util.HistoryRecorder;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 
 public class ShowPanel extends GridPane {
     private TextField inputTextField;
@@ -44,12 +48,22 @@ public class ShowPanel extends GridPane {
         this.add(this.result,1,1);
     }
     public void calculate(){
-//        String resultString = String.valueOf(ExpressionEvaluator.evaluateExpression("8-3-3"));
-        String resultString = String.valueOf(ExpressionEvaluator.evaluateExpression(this.inputTextField.getText()));
-        String expression = this.inputTextField.getText();
-        //计算结果
-        result.setText(resultString);
-        HistoryRecorder.writeDownHistory(expression,resultString,historyID);
+        try{
+            String resultString = String.valueOf(ExpressionEvaluator.evaluateExpression(this.inputTextField.getText()));
+            String expression = this.inputTextField.getText();
+            //计算结果
+            this.result.setText(resultString);
+            HistoryRecorder.writeDownHistory(expression,resultString,historyID);
+        }catch (Exception e){
+            ErrorAlert alert = new ErrorAlert(e);
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get()==ButtonType.OK){
+                //已经确认了此时要清除输入框
+                this.inputTextField.setText("");
+                this.result.setText("");
+            }
+
+        }
     }
     public void clear(){
         //清空输入框

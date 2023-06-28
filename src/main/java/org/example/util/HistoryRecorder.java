@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class HistoryRecorder {
+    private static final String filePath = "/histories.json";
     public static void writeDownHistory(String expression,String result,String historyID){
         // write json String to file
         try {
-            File file = new File("histories.json");
+            File file = new File(HistoryRecorder.class.getResource(filePath).getFile());
             if (!file.exists()){
                 file.createNewFile();
             }
@@ -45,7 +46,7 @@ public class HistoryRecorder {
     }
 
     public static ArrayList<History> readHistory(){
-        File file = new File("histories.json");
+        File file = new File(HistoryRecorder.class.getResource(filePath).getFile());
         if (!file.exists()){
             return new ArrayList<History>();
         }

@@ -3,7 +3,7 @@ package org.example.util;
 import java.util.Stack;
 
 public class ExpressionEvaluator {
-    public static double evaluateExpression(String expression) {
+    public static double evaluateExpression(String expression) throws IllegalArgumentException,ArithmeticException{
         // 去除空格
         expression = expression.replaceAll("\\s+", "");
         Stack<Double> numberStack = new Stack<>();      // 存储数字的栈
