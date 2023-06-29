@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.example.controller.OperatorButton;
+import org.example.event.HistoryDeleteEvent;
 import org.example.event.HistoryLoadEvent;
 import org.example.event.OperatorButtonClickEvent;
 import org.example.panel.ButtonPanel;
@@ -55,6 +56,13 @@ public class Calculator extends AnchorPane {
                 showPanel.loadHistory(historyLoadEvent.getHistory());
             }
         });
+        historyPanel.addEventHandler(HistoryDeleteEvent.HISTORY_DELETE_EVENT_TYPE, new EventHandler<HistoryDeleteEvent>() {
+            @Override
+            public void handle(HistoryDeleteEvent historyDeleteEvent) {
+                showPanel.resetHistoryID();
+            }
+        });
         super.getChildren().addAll(controlPanel,showPanel, buttonPanel, historyPanel);
     }
+
 }

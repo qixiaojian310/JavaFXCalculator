@@ -65,4 +65,32 @@ public class HistoryRecorder {
             throw new RuntimeException(e);
         }
     }
+    public static void deleteHistory(String historyID){
+        try {
+            File file = new File(filePath);
+            if (!file.exists()){
+                file.createNewFile();
+            }
+            //read file
+            boolean haveHistory = false;
+            ArrayList<History> histories = readHistory();
+            if(historyID.isEmpty()){
+                throw new RuntimeException("historyID is empty");
+            }else{
+                for(History history:histories){
+                    if(Objects.equals(history.getHistoryId(),historyID)){
+                        histories.remove(history);
+                        break;
+                    }
+                }
+            }
+            Writer writer =  new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
+            String historiesString = JSON.toJSONString(histories);
+            writer.write(historiesString);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

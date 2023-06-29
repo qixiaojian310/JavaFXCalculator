@@ -62,6 +62,10 @@ public class ShowPanel extends GridPane {
             //计算结果
             this.result.setText(resultString);
             HistoryRecorder.writeDownHistory(expression,resultString,historyID);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("计算成功");
+            alert.setHeaderText("计算成功，已写入记录");
+            alert.show();
         }catch (Exception e){
             ErrorAlert alert = new ErrorAlert(e);
             Optional<ButtonType> result = alert.showAndWait();
@@ -94,5 +98,8 @@ public class ShowPanel extends GridPane {
         this.inputTextField.setText(history.getExpression());
         this.result.setText(history.getResult());
         this.historyID = history.getHistoryId();
+    }
+    public void resetHistoryID(){
+        this.historyID = "";
     }
 }

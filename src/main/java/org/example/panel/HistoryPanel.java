@@ -1,19 +1,24 @@
 package org.example.panel;
 
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.TilePane;
 import org.example.controller.HistoryShow;
 import org.example.event.HistoryClickEvent;
+import org.example.event.HistoryDeleteEvent;
 import org.example.event.HistoryLoadEvent;
 import org.example.pojo.History;
 import org.example.staticValue.CalculatorSize;
 import org.example.util.HistoryRecorder;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Optional;
 
 public class HistoryPanel extends AnchorPane {
     private final static double historyPanelHeight = 500;
@@ -25,6 +30,7 @@ public class HistoryPanel extends AnchorPane {
     private Label label = new Label("History");
     private ArrayList<HistoryShow> historyShows = new ArrayList<HistoryShow>();
     private ArrayList<History> histories = new ArrayList<History>();
+    private History loadedHistory = null;
 
     public HistoryPanel(){
         this.setStyle("-fx-background-color: rgba(0,0,0,0);");
@@ -46,6 +52,23 @@ public class HistoryPanel extends AnchorPane {
         this.historyPanel.setPadding(new Insets(10,10,10,10));
         this.setStyle("visibility: hidden;");
         this.isShow = false;
+        this.addEventHandler(HistoryDeleteEvent.HISTORY_DELETE_EVENT_TYPE, new EventHandler<HistoryDeleteEvent>() {
+            @Override
+            public void handle(HistoryDeleteEvent historyDeleteEvent) {
+                HistoryRecorder.deleteHistory(historyDeleteEvent.getHistory().getHistoryId());
+                for (HistoryShow historyShow : historyShows) {
+                    if(Objects.equals(historyShow.getHistory().getHistoryId(), historyDeleteEvent.getHistory().getHistoryId())){
+                        historyShows.remove(historyShow);
+                        historyPanel.getChildren().remove(historyShow);
+                        break;
+                    }
+                }
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("操作成功");
+                alert.setHeaderText("你已经删除了这条记录");
+                alert.show();
+            }
+        });
     }
     private void showHistoryPanel(){
         try {
@@ -83,6 +106,7 @@ public class HistoryPanel extends AnchorPane {
         this.historyShows.add(historyShow);
         historyShow.addEventHandler(HistoryClickEvent.HISTORY_CLICK_EVENT_TYPE, (HistoryClickEvent historyClickEvent) -> {
             HistoryShow historyShowActive = (HistoryShow) historyClickEvent.getTarget();
+            this.loadedHistory = historyShowActive.getHistory();
             Event.fireEvent(this,new HistoryLoadEvent(historyShowActive.getHistory()));
         });
     }
