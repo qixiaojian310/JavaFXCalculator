@@ -8,9 +8,21 @@ class org.example.util.ExpressionEvaluator {
 class org.example.Calculator {
 - ShowPanel showPanel
 - ButtonPanel buttonPanel
-- HistoryControlPanel historyControlPanel
+- ControlPanel controlPanel
 - HistoryPanel historyPanel
 + <<Create>> Calculator()
+}
+class org.example.event.HistoryDeleteEvent {
++ {static} EventType<HistoryDeleteEvent> HISTORY_DELETE_EVENT_TYPE
+- History history
++ <<Create>> HistoryDeleteEvent(History)
++ History getHistory()
+}
+class org.example.panel.OperatorButtonBox {
+- int rowNum
+- int columnNum
++ <<Create>> OperatorButtonBox(int,int,OperatorButton)
++ int[] getButtonPosition()
 }
 class org.example.pojo.History {
 - String expression
@@ -25,6 +37,11 @@ class org.example.pojo.History {
 + void setExpression(String)
 + void setResult(String)
 }
+class org.example.panel.ControlPanel {
+- {static} double historyControlPanelHeight
+- HistoryButton historyButton
++ <<Create>> ControlPanel()
+}
 class org.example.panel.ShowPanel {
 - TextField inputTextField
 - Label result
@@ -36,6 +53,7 @@ class org.example.panel.ShowPanel {
 + void input(String)
 + void delete()
 + void loadHistory(History)
++ void resetHistoryID()
 }
 class org.example.event.HistoryLoadEvent {
 + {static} EventType<HistoryLoadEvent> HISTORY_LOAD_EVENT_TYPE
@@ -49,11 +67,6 @@ class org.example.controller.HistoryShow {
 + <<Create>> HistoryShow(History)
 + History getHistory()
 }
-class org.example.panel.HistoryControlPanel {
-- {static} double historyControlPanelHeight
-- HistoryButton historyButton
-+ <<Create>> HistoryControlPanel()
-}
 class org.example.AppLauncher {
 + {static} void main(String[])
 }
@@ -65,6 +78,7 @@ class org.example.util.HistoryRecorder {
 - {static} String filePath
 + {static} void writeDownHistory(String,String,String)
 + {static} ArrayList<History> readHistory()
++ {static} void deleteHistory(String)
 }
 class org.example.staticValue.CalculatorSize {
 + {static} double width
@@ -78,7 +92,7 @@ class org.example.panel.ButtonPanel {
 - {static} double buttonPanelHeight
 - {static} int rowNumber
 - {static} int columnNumber
-- {static} OperatorButton[] operatorButtons
+- {static} OperatorButtonBox[] operatorButtonBoxes
 + <<Create>> ButtonPanel()
 }
 class org.example.panel.HistoryPanel {
@@ -91,6 +105,7 @@ class org.example.panel.HistoryPanel {
 - Label label
 - ArrayList<HistoryShow> historyShows
 - ArrayList<History> histories
+- History loadedHistory
 + <<Create>> HistoryPanel()
 - void showHistoryPanel()
 - void hideHistoryPanel()
@@ -110,25 +125,24 @@ class org.example.controller.HistoryButton {
 }
 class org.example.controller.OperatorButton {
 - String operator
-- int rowNum
-- int columnNum
-+ <<Create>> OperatorButton(String,int,int)
++ <<Create>> OperatorButton(String)
 + String inputOperator()
-+ int[] getButtonPosition()
 }
 
 
 javafx.scene.layout.AnchorPane <|-- org.example.Calculator
+javafx.event.Event <|-- org.example.event.HistoryDeleteEvent
+javafx.scene.layout.VBox <|-- org.example.panel.OperatorButtonBox
+javafx.scene.layout.AnchorPane <|-- org.example.panel.ControlPanel
 javafx.scene.layout.GridPane <|-- org.example.panel.ShowPanel
 javafx.event.Event <|-- org.example.event.HistoryLoadEvent
 org.example.controller.GridPane <|-- org.example.controller.HistoryShow
-javafx.scene.layout.AnchorPane <|-- org.example.panel.HistoryControlPanel
 javafx.application.Application <|-- org.example.Main
 javafx.event.Event <|-- org.example.event.HistoryClickEvent
 javafx.scene.layout.GridPane <|-- org.example.panel.ButtonPanel
 javafx.scene.layout.AnchorPane <|-- org.example.panel.HistoryPanel
 javafx.event.Event <|-- org.example.event.OperatorButtonClickEvent
 javafx.scene.control.Alert <|-- org.example.controller.ErrorAlert
-javafx.scene.control.Button <|-- org.example.controller.HistoryButton
-javafx.scene.control.Button <|-- org.example.controller.OperatorButton
+com.jfoenix.controls.JFXButton <|-- org.example.controller.HistoryButton
+com.jfoenix.controls.JFXButton <|-- org.example.controller.OperatorButton
 @enduml
