@@ -26,12 +26,12 @@ public class HistoryPanel extends AnchorPane {
     private ArrayList<History> histories = new ArrayList<History>();
 
     public HistoryPanel(){
-        this.setStyle("-fx-background-color: #ffffff;");
+        this.setStyle("-fx-background-color: rgba(0,0,0,0);");
         this.setPrefSize(CalculatorSize.width, historyPanelHeight);
         this.setLayoutY(CalculatorSize.height-historyPanelHeight);
         this.labelPanel.setPrefSize(CalculatorSize.width,labelPanelHeight);
         this.labelPanel.setLayoutY(0);
-        this.labelPanel.setStyle("-fx-background-color: #ffffff; -fx-font-size: 20px;");
+        this.labelPanel.setStyle("-fx-background-color: black; -fx-font-size: 20px;");
         this.scrollPanel.setPrefSize(CalculatorSize.width,historyPanelHeight-labelPanelHeight);
         this.scrollPanel.setLayoutY(labelPanelHeight);
         this.scrollPanel.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -39,32 +39,8 @@ public class HistoryPanel extends AnchorPane {
         this.scrollPanel.fitToHeightProperty().set(true);
         this.scrollPanel.fitToWidthProperty().set(true);
         this.scrollPanel.setContent(historyPanel);
+        this.scrollPanel.setStyle("-fx-background-color: rgba(0,0,0,0);");
         this.historyPanel.setPrefSize(CalculatorSize.width,historyPanelHeight-labelPanelHeight);
-//        try {
-//            this.histories = HistoryRecorder.readHistory();
-//            for (History history : this.histories) {
-//                addHistory(new HistoryShow(history));
-//            }
-//        }catch (NullPointerException e){
-//            System.out.println("No history");
-//        }
-//        this.setStyle("-fx-background-color: #ffffff;");
-//        this.setPrefSize(CalculatorSize.width, historyPanelHeight);
-//        this.setLayoutY(CalculatorSize.height-historyPanelHeight);
-//        this.labelPanel.setPrefSize(CalculatorSize.width,labelPanelHeight);
-//        this.labelPanel.setLayoutY(0);
-//        this.labelPanel.setStyle("-fx-background-color: #ffffff; -fx-font-size: 20px;");
-//        this.scrollPanel.setPrefSize(CalculatorSize.width,historyPanelHeight-labelPanelHeight);
-//        this.scrollPanel.setLayoutY(labelPanelHeight);
-//        this.scrollPanel.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-//        this.scrollPanel.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-//        this.scrollPanel.fitToHeightProperty().set(true);
-//        this.scrollPanel.fitToWidthProperty().set(true);
-//        this.scrollPanel.setContent(historyPanel);
-//        this.historyPanel.setPrefSize(CalculatorSize.width,historyPanelHeight-labelPanelHeight);
-//        this.historyPanel.getChildren().addAll(historyShows);
-//        this.labelPanel.getChildren().add(label);
-//        this.getChildren().addAll(labelPanel,scrollPanel);
         this.setStyle("visibility: hidden;");
         this.isShow = false;
     }
@@ -78,6 +54,7 @@ public class HistoryPanel extends AnchorPane {
             System.out.println("No history");
         }
         this.historyPanel.getChildren().addAll(historyShows);
+        this.label.setStyle("-fx-text-fill: white;");
         this.labelPanel.getChildren().add(label);
         this.getChildren().addAll(labelPanel,scrollPanel);
         this.setStyle("visibility: visible;");

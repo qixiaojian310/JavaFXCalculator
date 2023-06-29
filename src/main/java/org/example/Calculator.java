@@ -1,31 +1,27 @@
 package org.example;
 
-import com.alibaba.fastjson2.JSON;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.example.controller.OperatorButton;
 import org.example.event.HistoryLoadEvent;
 import org.example.event.OperatorButtonClickEvent;
 import org.example.panel.ButtonPanel;
-import org.example.panel.HistoryControlPanel;
+import org.example.panel.ControlPanel;
 import org.example.panel.HistoryPanel;
 import org.example.panel.ShowPanel;
-
-import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 public class Calculator extends AnchorPane {
     private ShowPanel showPanel;
     private ButtonPanel buttonPanel;
-    private HistoryControlPanel historyControlPanel;
+    private ControlPanel controlPanel;
     private HistoryPanel historyPanel;
 
     public Calculator() {
+        this.setStyle("-fx-background-color: rgba(255, 255, 255, 0);");
         showPanel = new ShowPanel();
         buttonPanel = new ButtonPanel();
-        historyControlPanel = new HistoryControlPanel();
+        controlPanel = new ControlPanel();
         historyPanel = new HistoryPanel();
         buttonPanel.addEventHandler(OperatorButtonClickEvent.OPERATOR_BUTTON_CLICK_EVENT_TYPE, new EventHandler<OperatorButtonClickEvent>() {
             @Override
@@ -47,7 +43,7 @@ public class Calculator extends AnchorPane {
                 }
             }
         });
-        historyControlPanel.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+        controlPanel.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 historyPanel.toggleHistoryPanel();
@@ -59,6 +55,6 @@ public class Calculator extends AnchorPane {
                 showPanel.loadHistory(historyLoadEvent.getHistory());
             }
         });
-        super.getChildren().addAll(historyControlPanel,showPanel, buttonPanel, historyPanel);
+        super.getChildren().addAll(controlPanel,showPanel, buttonPanel, historyPanel);
     }
 }
