@@ -41,7 +41,7 @@ public class ButtonPanel extends GridPane {
     public ButtonPanel(){
         this.setPrefSize(CalculatorSize.width,buttonPanelHeight);
         this.setLayoutY(CalculatorSize.height-buttonPanelHeight);
-        this.setStyle("-fx-background-color: #ff0000;");
+        this.setStyle("-fx-background-color: #ffffff;");
         for (int row = 0; row < rowNumber; row++) {
             this.getRowConstraints().add(new RowConstraints(buttonPanelHeight/rowNumber));
         }
