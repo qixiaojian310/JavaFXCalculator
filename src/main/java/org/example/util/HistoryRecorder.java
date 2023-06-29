@@ -1,7 +1,6 @@
 package org.example.util;
 
 import com.alibaba.fastjson2.JSON;
-import org.example.controller.HistoryShow;
 import org.example.pojo.History;
 
 import java.io.*;
@@ -10,11 +9,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class HistoryRecorder {
-    private static final String filePath = "/histories.json";
+    private static final String filePath = "src/main/java/org/example/data/histories.json";
     public static void writeDownHistory(String expression,String result,String historyID){
         // write json String to file
         try {
-            File file = new File(HistoryRecorder.class.getResource(filePath).getFile());
+            File file = new File(filePath);
             if (!file.exists()){
                 file.createNewFile();
             }
@@ -46,7 +45,7 @@ public class HistoryRecorder {
     }
 
     public static ArrayList<History> readHistory(){
-        File file = new File(HistoryRecorder.class.getResource(filePath).getFile());
+        File file = new File(filePath);
         if (!file.exists()){
             return new ArrayList<History>();
         }
