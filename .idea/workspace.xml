@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3f17a76-584e-4454-b068-9587f59aa7e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/panel/OperatorButtonBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Calculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/HistoryButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/HistoryButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/OperatorButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/OperatorButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/data/histories.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/data/histories.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/panel/ButtonPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/panel/ButtonPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/panel/HistoryControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/panel/ControlPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/HistoryShow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/HistoryShow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/panel/HistoryPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/panel/HistoryPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/panel/ShowPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/panel/ShowPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +124,7 @@
       <workItem from="1687965030855" duration="4263000" />
       <workItem from="1688007988189" duration="2984000" />
       <workItem from="1688046913476" duration="1556000" />
-      <workItem from="1688050391043" duration="5377000" />
+      <workItem from="1688050391043" duration="6822000" />
     </task>
     <servers />
   </component>

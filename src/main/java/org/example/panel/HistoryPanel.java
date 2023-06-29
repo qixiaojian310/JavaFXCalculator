@@ -1,6 +1,7 @@
 package org.example.panel;
 
 import javafx.event.Event;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -41,6 +42,8 @@ public class HistoryPanel extends AnchorPane {
         this.scrollPanel.setContent(historyPanel);
         this.scrollPanel.setStyle("-fx-background-color: rgba(0,0,0,0);");
         this.historyPanel.setPrefSize(CalculatorSize.width,historyPanelHeight-labelPanelHeight);
+        this.historyPanel.setVgap(10);
+        this.historyPanel.setPadding(new Insets(10,10,10,10));
         this.setStyle("visibility: hidden;");
         this.isShow = false;
     }
