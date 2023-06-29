@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3f17a76-584e-4454-b068-9587f59aa7e6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/histories.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UML.puml" beforeDir="false" afterPath="$PROJECT_DIR$/UML.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/data/histories.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/util/HistoryRecorder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/util/HistoryRecorder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +74,7 @@
       <recent name="E:\Calculator\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.Calculator-1.0-SNAPSHOT.jar">
+  <component name="RunManager" selected="JAR Application.Calculator-1.1.jar">
     <configuration name="ExpressionTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Calculator" />
       <option name="PACKAGE_NAME" value="" />
@@ -99,8 +99,13 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/target/Calculator-1.0-SNAPSHOT.jar" />
       <method v="2" />
     </configuration>
+    <configuration name="Calculator-1.1.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/target/Calculator-1.1.jar" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.Calculator-1.1.jar" />
         <item itemvalue="JAR Application.Calculator-1.0-SNAPSHOT.jar" />
         <item itemvalue="JUnit.HistoryRecorderTest.testHistoryRecorder" />
         <item itemvalue="JUnit.ExpressionTest.test" />
@@ -125,7 +130,7 @@
       <workItem from="1687965030855" duration="4263000" />
       <workItem from="1688007988189" duration="2984000" />
       <workItem from="1688046913476" duration="1556000" />
-      <workItem from="1688050391043" duration="18406000" />
+      <workItem from="1688050391043" duration="22270000" />
     </task>
     <servers />
   </component>

@@ -4,12 +4,14 @@ import com.alibaba.fastjson2.JSON;
 import org.example.pojo.History;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class HistoryRecorder {
-    private static final String filePath = "src/main/java/org/example/data/histories.json";
+    private static final String filePath = System.getProperty("user.dir")+"/histories.json";
     public static void writeDownHistory(String expression,String result,String historyID){
         // write json String to file
         try {
