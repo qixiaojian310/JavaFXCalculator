@@ -3,11 +3,12 @@ package org.example.util;
 import java.util.Stack;
 
 public class ExpressionEvaluator {
-    public static double evaluateExpression(String expression) throws IllegalArgumentException,ArithmeticException{
+    public static double evaluateExpression(String expression) throws IllegalArgumentException, ArithmeticException {
         // 去除空格
         expression = expression.replaceAll("\\s+", "");
         Stack<Double> numberStack = new Stack<>();      // 存储数字的栈
         Stack<Character> operatorStack = new Stack<>(); // 存储操作符的栈
+        boolean isNegative = false; // 用于标记负数
 
         //中缀表达式转后缀表达式
         for (int i = 0; i < expression.length(); i++) {
@@ -23,7 +24,24 @@ public class ExpressionEvaluator {
                 i--;
 
                 double number = Double.parseDouble(sb.toString());
+                if (isNegative) {
+                    number = -number;
+                    isNegative = false; // 重置负数标记
+                }
                 numberStack.push(number);
+            } else if (ch == '-') {
+                // 遇到负号
+                if (i == 0 || expression.charAt(i - 1) == '(') {
+                    // 当负号出现在表达式开头或左括号后面时，标记下一个数字为负数
+                    isNegative = true;
+                } else {
+                    // 当负号出现在其他位置时，表示减法操作符
+                    while (!operatorStack.isEmpty() && hasPrecedence(ch, operatorStack.peek())) {
+                        double result = performOperation(operatorStack.pop(), numberStack.pop(), numberStack.pop());
+                        numberStack.push(result);
+                    }
+                    operatorStack.push(ch);
+                }
             } else if (ch == '(') {
                 operatorStack.push(ch);
             } else if (ch == ')') {
@@ -41,6 +59,8 @@ public class ExpressionEvaluator {
                     numberStack.push(result);
                 }
                 operatorStack.push(ch);
+            } else {
+                throw new NumberFormatException();
             }
         }
 

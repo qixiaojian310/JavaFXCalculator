@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3f17a76-584e-4454-b068-9587f59aa7e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/NewHistory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/event/NewHistoryEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/histories.json" beforeDir="false" afterPath="$PROJECT_DIR$/histories.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Calculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/HistoryButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/HistoryButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/panel/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/panel/ControlPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/panel/ShowPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/panel/ShowPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/util/ExpressionEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/util/ExpressionEvaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ExpressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ExpressionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +73,7 @@
       <recent name="E:\Calculator\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.Calculator-1.1.jar">
+  <component name="RunManager" selected="JUnit.ExpressionTest.test">
     <configuration name="ExpressionTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Calculator" />
       <option name="PACKAGE_NAME" value="" />
@@ -109,10 +104,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ExpressionTest.test" />
         <item itemvalue="JAR Application.Calculator-1.1.jar" />
         <item itemvalue="JAR Application.Calculator-1.0-SNAPSHOT.jar" />
         <item itemvalue="JUnit.HistoryRecorderTest.testHistoryRecorder" />
-        <item itemvalue="JUnit.ExpressionTest.test" />
       </list>
     </recent_temporary>
   </component>
@@ -135,7 +130,7 @@
       <workItem from="1688007988189" duration="2984000" />
       <workItem from="1688046913476" duration="1556000" />
       <workItem from="1688050391043" duration="23437000" />
-      <workItem from="1688087412141" duration="1046000" />
+      <workItem from="1688087412141" duration="5308000" />
     </task>
     <servers />
   </component>
