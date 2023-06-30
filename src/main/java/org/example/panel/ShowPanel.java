@@ -102,4 +102,13 @@ public class ShowPanel extends GridPane {
     public void resetHistoryID(){
         this.historyID = "";
     }
+
+    public void newHistory(){
+        this.inputTextField.setText("");
+        this.result.setText("");
+        this.historyID = "";
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("清除成功");
+        alert.setHeaderText("生成新的记录");
+    }
 }

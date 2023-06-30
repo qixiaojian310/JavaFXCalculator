@@ -2,8 +2,11 @@ package org.example.controller;
 
 
 import com.jfoenix.controls.JFXButton;
+import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;
+import org.example.event.NewHistoryEvent;
+import org.example.event.OpenHistoryEvent;
 import org.example.staticValue.CalculatorSize;
 
 public class HistoryButton extends JFXButton {
@@ -12,8 +15,11 @@ public class HistoryButton extends JFXButton {
         this.setText(buttonName);
         this.setFont(new Font(24));
         this.setLayoutY(0);
-        this.setPrefSize(CalculatorSize.width,50);
+        this.setPrefSize(160,50);
+        this.setLayoutX(CalculatorSize.width-160);
         this.setStyle("-jfx-button-type: RAISED;-fx-background-color:black;-fx-text-fill: white;");
-        this.setLayoutX(0);
+        this.setOnAction((event) -> {
+            Event.fireEvent(this,new OpenHistoryEvent());
+        });
     }
 }
